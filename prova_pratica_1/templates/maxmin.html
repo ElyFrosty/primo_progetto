@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{%block title%} {{block.super}} | Somma {%endblock title%}
+
+{%block content%}
+    <style>
+        .rosso{color:red}
+        .verde{color:green}
+    </style>
+
+    {% if var1 < var2 %}
+        Primo numero= <b class='rosso'>{{ var1 }}</b><br/>
+        Secondo numero= <b class='verde'>{{ var2 }}</b><br/>
+    {% elif var2 < var1 %}
+        Primo numero= <b class='verde'>{{ var1 }}</b><br/>
+        Secondo numero= <b class='rosso'>{{ var2 }}</b><br/>
+    {% else %}
+        Primo numero= <b>{{ var1 }}</b><br/>
+        Secondo numero= <b>{{ var2 }}</b><br/>
+    {% endif %}
+    
+    Somma= <b>{{ somma }}</b><br/>
+    
+
+{%endblock content%}
