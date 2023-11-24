@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{%block title%} Query di base {%endblock title%}
+
+{%block content%}
+    <h3><strong>Articoli di giornalisti di cognome Rossi: </strong></h3>
+    {%for articolo in articoli_cognome%}
+        <p><strong>Titolo: </strong>{{articolo.titolo}}</p>
+        <p><strong>Contenuto: </strong>{{articolo.contenuto}}</p>
+        <p><strong>Autore:</strong>{{articolo.giornalista}}</p>
+        <hr>
+    {% endfor %}
+
+    <h3><strong>Numero totale articoli: </strong></h3>
+    <h4>{{numero_totale_articoli}}</h4>
+    <hr>
+
+    <h3><strong>Numero degli articoli di {{giornalista_1}}: </strong></h3>
+    <h4>{{numero_articoli_giornalista_1}}</h4>
+    <hr>
+
+    <h3><strong>Articoli in ordine di visualizzazioni: </strong></h3>
+    {%for articolo in articoli_ordinati%}
+        <p><strong>Titolo: </strong>{{articolo.titolo}}</p>
+        <p><strong>Contenuto: </strong>{{articolo.contenuto}}</p>
+        <p><strong>Autore: </strong>{{articolo.giornalista}}</p>
+        <p><strong>Visualizzazioni: </strong>{{articolo.visualizzazzioni}}</p>
+        <hr>
+    {% endfor %}
+    
+
+    <h3><strong>Articoli con zero visualizzazioni: </strong></h3>
+    {%for articolo in  articoli_senza_visualizzazioni%}
+        <p><strong>Titolo: </strong>{{articolo.titolo}}</p>
+        <p><strong>Contenuto: </strong>{{articolo.contenuto}}</p>
+        <p><strong>Autore: </strong>{{articolo.giornalista}}</p>
+        <hr>
+    {% endfor %}
+
+    <h3><strong>Articolo con più visualizzazioni: </strong></h3>
+    <p><strong>Titolo: </strong>{{articolo_piu_visualizzato.titolo}}</p>
+    <p><strong>Contenuto: </strong>{{articolo_piu_visualizzato.contenuto}}</p>
+    <p><strong>Autore: </strong>{{articolo_piu_visualizzato.giornalista}}</p>
+    <p><strong>Visualizzazioni: </strong>{{articolo_piu_visualizzato.visualizzazzioni}}</p>
+    <hr>
+    
+    <h3><strong>Giornalisti nati dopo il 01/01/1999: </strong></h3>
+    {%for giornalista in giornalisti_data%}
+        <p><strong>{{giornalista.nome}} {{giornalista.cognome}}</strong> {{giornalista.anno_di_nascita}}</p>
+        <hr>
+    {% endfor %}
+
+    <h3><strong>Articoli pubblicati in un certo lasso di tempo: </strong></h3>
+    {%for articolo in  articoli_periodo%}
+        <p><strong>Titolo: </strong>{{articolo.titolo}}</p>
+        <p><strong>Contenuto: </strong>{{articolo.contenuto}}</p>
+        <p><strong>Autore: </strong>{{articolo.giornalista}}</p>
+        <hr>
+    {% endfor %}
+
+    <h3><strong>Giornalista più giovane: </strong></h3>
+    <p><strong>{{giornalista_giovane.nome}} {{giornalista_giovane.cognome}}</strong> {{giornalista_giovane.anno_di_nascita}}</p>
+    <hr>
+
+    <h3><strong>Giornalista più anziano: </strong></h3>
+    <p><strong>{{giornalista_anziano.nome}} {{giornalista_anziano.cognome}}</strong> {{giornalista_anziano.anno_di_nascita}}</p>
+    <hr>
+
+    <h3><strong>Ultimi 5 articoli pubblicati: </strong></h3>
+    {%for articolo in ultimi%}
+        <p><strong>Titolo: </strong>{{articolo.titolo}}</p>
+        <p><strong>Contenuto: </strong>{{articolo.contenuto}}</p>
+        <p><strong>Autore: </strong>{{articolo.giornalista}}</p>
+        <p><strong>Visualizzazioni: </strong>{{articolo.visualizzazzioni}}</p>
+        <hr>
+    {% endfor %}
+
+    <h3><strong>Articoli importanti: </strong></h3>
+    {%for articolo in articoli_parola%}
+        <p><strong>Titolo: </strong>{{articolo.titolo}}</p>
+        <p><strong>Contenuto: </strong>{{articolo.contenuto}}</p>
+        <p><strong>Autore: </strong>{{articolo.giornalista}}</p>
+        <p><strong>Visualizzazioni: </strong>{{articolo.visualizzazzioni}}</p>
+        <hr>
+    {% endfor %}
+
+
+
+{%endblock content%}
