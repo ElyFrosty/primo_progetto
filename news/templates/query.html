@@ -83,6 +83,22 @@
         <p><strong>Visualizzazioni: </strong>{{articolo.visualizzazzioni}}</p>
         <hr>
     {% endfor %}
+    
+    <h3><strong>Articoli pubblicati nel novembre del 2023: </strong></h3>
+    {%for articolo in articoli_mese_anno%}
+        <p><strong>Titolo: </strong>{{articolo.titolo}}</p>
+        <p><strong>Contenuto: </strong>{{articolo.contenuto}}</p>
+        <p><strong>Autore: </strong>{{articolo.giornalista}}</p>
+        <p><strong>Visualizzazioni: </strong>{{articolo.visualizzazzioni}}</p>
+        <hr>
+    {% endfor %}
+
+    <h3><strong>Giornalisti con almeno un articolo con più di 100 visualizzazioni: </strong></h3>
+    {%for giornalista in giornalisti_con_articoli_popolari%}
+        <p>{{giornalista.nome}} {{giornalista.cognome}}</p>
+        <hr>
+    {% endfor %}
+
 
 
 

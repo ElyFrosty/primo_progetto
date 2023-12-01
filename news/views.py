@@ -45,6 +45,14 @@ def articoloDetailView(request,pk):
     context={"articolo": articolo}
     return render(request, "articolo_detail.html", context)
 
+def giornalistaDetailView(request,pk):
+    #articolo=Articolo.objects.get(pk=pk)
+    giornalista=get_object_or_404(Giornalista, pk=pk)
+    articoli=Articolo.objects.filter(giornalista_id=pk)
+    context={"giornalista": giornalista,
+             "articoli":articoli }
+    return render(request, "giornalista_detail.html", context)
+
 def listaArticoli(request,pk=None):
     if (pk==None):
         articoli=Articolo.objects.all()
@@ -107,6 +115,32 @@ def queryBase(request):
     #15. Tutti gli articoli che contengono una certa parola all'inizio:
     articoli_parola=Articolo.objects.filter(titolo__icontains='importante')
 
+    #16. Articoli pubblicati in un certo mese di un anno specifico:
+    articoli_mese_anno=Articolo.objects.filter(data__month=11, data__year=2023)
+
+    #17. Giornalisti con almeno un articolo con più di 100 visualizzazioni
+    giornalisti_con_articoli_popolari=Giornalista.objects.filter(articoli__visualizzazzioni__gte=100).distinct()
+
+    #UTILIZZO DI PIU' CONDIZIONI DI SELEZIONE
+    data=datetime.date(1990,1,1)
+    visualizzazioni=50
+    #Per mettere in AND le condizioni separarle con la virgola
+    #18. ...scrivi quali articoli vengono selezionati
+    articoli_con_and = Articolo.objects.filter(giornalista__anno_di_nascita__gt=data, visualizzazzioni__gte=visualizzazioni)
+
+    #Per mettere in OR le condizioni utilizzare l'operatore Q
+    from django.db.models import Q
+    #19. ...scrivi quali articoli vengono selezionati
+    articoli_con_or = Articolo.objects.filter(Q(giornalista__anno_di_nascita__gt=data) | Q(visualizzazzioni__lte=visualizzazioni))
+    
+    # Per il NOT (~) utilizzare l'operatore Q
+    #20. ...scrivi quali articoli vengono selezionati
+    articoli_con_not = Articolo.objects.filter(~Q(giornalista__anno_di_nascita__lt=data))
+    #oppure il metodo exclude
+    articoli_con_not = Articolo.objects.exclude(giornalista__anno_di_nascita__lt=data)
+
+
+
     context={
         'articoli_cognome':articoli_cognome,
         'numero_totale_articoli':numero_totale_articoli,
@@ -124,7 +158,14 @@ def queryBase(request):
         'ultimi':ultimi,   
         'articoli_minime_visual':articoli_minime_visual,
         'articoli_parola':articoli_parola,
+        'articoli_mese_anno':articoli_mese_anno,
+        'giornalisti_con_articoli_popolari':giornalisti_con_articoli_popolari,
+        'articoli_con_and':articoli_con_and,
+        'articoli_con_or':articoli_con_or,
+        'articoli_con_not':articoli_con_not,
     }
     return render(request, 'query.html', context)
 
+def indexNews(request):
+    return render(request, "index_news.html")
     
