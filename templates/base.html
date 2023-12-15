@@ -50,7 +50,18 @@
                 <a class="dropdown-item" href="{% url 'news:homeview'%}">Homepage</a>
                 <a class="dropdown-item" href="{% url 'news:lista_articoli'%}">Lista articoli</a>
                 <a class="dropdown-item" href="{% url 'news:query'%}">Query</a>
-              
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Voti
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/">Index root</a>
+                <a class="dropdown-item" href="{% url 'voti:view_a'%}">Lista materie</a>
+                <a class="dropdown-item" href="{% url 'voti:view_b'%}">Voti studenti</a>
+                <a class="dropdown-item" href="{% url 'voti:view_c'%}">Media studenti</a>
+                <a class="dropdown-item" href="{% url 'voti:view_d'%}">Max min voti</a>
               </div>
             </li>
           </ul>

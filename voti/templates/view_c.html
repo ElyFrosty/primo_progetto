@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{%block title%} Media studenti {%endblock title%}
+
+{%block content%}
+    <h3>Media:</h3>
+    {% for key, value in voti.items %}
+    <ul>
+        <li>{{ key }}: </li>
+        {% for materia, voti, assenze in value %}
+            
+        {% endfor %}
+    </ul>
+    {% endfor %}
+
+{%endblock content%}

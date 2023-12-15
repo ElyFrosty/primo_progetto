@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{%block title%} Voti studente {%endblock title%}
+
+{%block content%}
+    <h3>Studenti:</h3>
+    {% for key, value in voti.items %}
+    <ul>
+        <li>{{ key }}:
+            <ul>
+            {% for list in value %}
+                <li>{{ list.0 }}, {{ list.1 }}, {{ list.2 }}</li>
+            {% endfor %}
+            </ul>
+        </li>
+        
+    </ul>
+{% endfor %}
+
+{%endblock content%}
